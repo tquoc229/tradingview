@@ -1,1 +1,87 @@
-Hi
+<!DOCTYPE html>
+<html>
+    <header>
+        <title>
+            Tradingview Multichart
+        </title>
+        <META name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+        <style>
+            .chart {
+                width: 100%;
+                height: 500px;
+                float: none;
+            }
+            @media (min-width: 900px) {
+
+                .chart {
+                    float: left;
+                    width: calc(50%); 
+                    height: calc(50vh - 12px);
+                }
+            
+                
+            }
+        </style>
+        <script type="text/javascript">
+            function GetURLParameter(sParam) {
+                var sPageURL = window.location.search.substring(1);
+                var sURLVariables = sPageURL.split('&');
+                for (var i = 0; i < sURLVariables.length; i++){
+                    var sParameterName = sURLVariables[i].split('=');
+                    if (sParameterName[0] == sParam)
+                    {
+                        return sParameterName[1];
+                    }
+                }
+            }
+        </script>
+    </header>
+    <body>
+        <!-- TradingView Widget BEGIN -->
+        <div class="tradingview-widget-container">
+        <div id="tradingview_1" class="chart chart--1"></div>
+        <div id="tradingview_2" class="chart chart--2"></div>
+        <div id="tradingview_3" class="chart chart--3"></div>
+        <div id="tradingview_4" class="chart chart--4"></div>
+        <script type="text/javascript">
+        function newChart(container_id, symbol, interval) {
+            new TradingView.widget(
+            {
+                "autosize": true,
+                "symbol": symbol,
+                "interval": interval,
+                "timezone": "Asia/Ho_Chi_Minh",
+                "theme": "Light",
+                "style": "1",
+                "locale": "en",
+                "toolbar_bg": "#f1f3f6",
+                "enable_publishing": false,
+                "hide_legend": true,
+                "allow_symbol_change": true,
+                "studies": [
+                "BB@tv-basicstudies",
+                "IchimokuCloud@tv-basicstudies",
+                "RSI@tv-basicstudies",
+                "StochasticRSI@tv-basicstudies"
+                ],
+                "container_id": container_id
+            }
+            );
+        }
+
+        var symbol = GetURLParameter('symbol');
+
+        newChart('tradingview_1', symbol, '15');
+        newChart('tradingview_2', symbol, '60');
+        newChart('tradingview_3', symbol, '240');
+        newChart('tradingview_4', symbol, 'D');
+
+        
+        </script>
+      </div>
+      <!-- TradingView Widget END -->
+
+    </body>
+</html>
