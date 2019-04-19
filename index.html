@@ -71,7 +71,7 @@
             );
         }
 
-        var symbol = GetURLParameter('symbol');
+        var symbol = GetURLParameter('symbol') || 'binance:btcusdt';
 
         newChart('tradingview_1', symbol, '15');
         newChart('tradingview_2', symbol, '60');
